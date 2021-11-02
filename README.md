@@ -1,2 +1,2 @@
-# -3minutes-coding-server
+# 3minutes-coding-server
 [Node.js]
