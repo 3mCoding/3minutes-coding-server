@@ -12,5 +12,6 @@ create table user(
 
 create table question_step(
     student_num INT PRIMARY KEY,
-    stemp INT NOT NULL
+    step INT NOT NULL, 
+    date DATETIME
 );
