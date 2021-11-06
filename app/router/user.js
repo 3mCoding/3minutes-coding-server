@@ -28,7 +28,7 @@ router.post('/join', function (req, res) {
         message: "이미 가입된 이메일입니다."
       })
     } else {
-      connection.query(`INSERT INTO user VALUES ('${user.email}', '${user.student_num}', '${user.name}', '${password}', '${date}')`, function (err, result) {
+      connection.query(`INSERT INTO user VALUES ('${user.email}', '${user.student_num}', '${user.name}', '${password}', 1, '${date}')`, function (err, result) {
         let resultCode = 404;
         let message = '에러가 발생했습니다';
         if (err)
@@ -57,6 +57,7 @@ router.post('/login', function (req, res) {
   connection.query(sql, email, function (err, result) {
     let resultCode = 404;
     let message = '에러가 발생했습니다';
+    let step = null;
     if (err)
       console.log(err);
     else {
@@ -69,11 +70,13 @@ router.post('/login', function (req, res) {
       } else {
         resultCode = 200;
         message = '로그인 되었습니다.';
+        step = result[0].step;
       }
     }
     res.json({
       'code': resultCode,
-      'message': message
+      'message': message,
+      'step' : step
     });
   })
 });
