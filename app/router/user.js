@@ -81,20 +81,12 @@ router.post('/login', function (req, res) {
   })
 });
 
-router.get('/info/:id', function (req, res) {
-  let id = req.params.id;
-
-  let sqlAll = 'select * from user where id = ?';
-
-  connection.query(sqlAll, id, function (err, result) {
-    if (err) return res.sendStatus(400);
-
-    res.json({
-      'id': result[0].id,
-      'name': result[0].name
-    });
-    console.log("result : " + JSON.stringify(result));
+router.get('/list', function (req, res) {
+  let sql = 'select student_num, name, step from user';
+  connection.query(sql, function (err, result) {
+      if (err) return res.sendStatus(400);
+      res.json(result);
+      console.log("result : " + JSON.stringify(result));
   });
-
-})
+});
 module.exports = router;
