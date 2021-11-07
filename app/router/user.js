@@ -82,7 +82,15 @@ router.post('/login', function (req, res) {
 });
 
 router.get('/list', function (req, res) {
-  let sql = 'select student_num, name, step from user';
+  let order = req.body.order;
+  let sql;
+  switch(order){
+    case 0: sql = 'select student_num, name, step from user'; break;
+    case 1: sql = 'select student_num, name, step from user order by student_num ASC'; break;
+    case 2: sql = 'select student_num, name, step from user order by student_num DESC'; break;
+    case 3: sql = 'select student_num, name, step from user order by step ASC'; break;
+  }
+  
   connection.query(sql, function (err, result) {
       if (err) return res.sendStatus(400);
       res.json(result);
