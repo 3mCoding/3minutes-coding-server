@@ -60,7 +60,7 @@ router.post('/login', function (req, res) {
     let step = null;
     let name;
     let date;
-    let rank = 10;
+    let rank;
     if (err)
       console.log(err);
     else {
@@ -83,6 +83,7 @@ router.post('/login', function (req, res) {
           for(let i = 0; ; i++){
             console.log(ret[i].email);
             console.log(ret[i].ranking);
+            console.log(ret[i].email === email);
             if(ret[i].email === email) {
               rank = ret[i].ranking;
               break;
