@@ -75,8 +75,8 @@ router.post('/login', function (req, res) {
         let rankSql = 'SELECT email, rank() over(order by step desc) AS ranking FROM user'
         connection.query(rankSql, function (err, ret) {
           console.log(ret);
-          for(let i = 0; ; i++){
-            if(ret[i].email === email) {
+          for (let i = 0;; i++) {
+            if (ret[i].email === email) {
               rank_ = ret[i].ranking;
               break;
             }
@@ -92,14 +92,14 @@ router.post('/login', function (req, res) {
           res.json({
             'code': resultCode,
             'message': message,
-            'step' : step,
-            'name' : stuName,
-            'rank' : rank,
-            'date':date
+            'step': step,
+            'name': stuName,
+            'rank': rank,
+            'date': date
           });
 
         })
-        console.log('랭킹 : ' ,rank, rank_);
+        console.log('랭킹 : ', rank, rank_);
       }
     }
   })
@@ -110,18 +110,29 @@ router.get('/list', function (req, res) {
   let order = req.query.order;
   let sql;
 
-  if(order == 0)sql = 'select student_num, name, step from user';
-  else if(order == 1)sql = 'select student_num, name, step from user order by student_num ASC'; 
-  else if(order == 2) sql = 'select student_num, name, step from user order by student_num DESC';
-  else if(order == 3) sql = 'select student_num, name, step from user order by step DESC';
+  if (order == 0) sql = 'select student_num, name, step from user';
+  else if (order == 1) sql = 'select student_num, name, step from user order by student_num ASC';
+  else if (order == 2) sql = 'select student_num, name, step from user order by student_num DESC';
+  else if (order == 3) sql = 'select student_num, name, step from user order by step DESC';
 
   connection.query(sql, function (err, result) {
-      if (err) {
-        console.log(err);
-        return res.sendStatus(400);
-      }
-      res.json(result);
-      console.log("result : " + JSON.stringify(result));
+    if (err) {
+      console.log(err);
+      return res.sendStatus(400);
+    }
+    res.json(result);
+    console.log("result : " + JSON.stringify(result));
   });
+});
+
+router.post('/pass', function (req, res) {
+  const email = req.body.email;
+  const step = req.body.step + 1;
+  console.log(step);
+  var sql = 'UPDATE user SET step = ? WHERE email = ?';
+  let params = [step, email];
+  connection.query(sql, params, function (err, result) {
+    res.end();
+  })
 });
 module.exports = router;
