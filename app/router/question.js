@@ -67,7 +67,7 @@ console.log(id, answers);
 router.get('/description', function (req, res) {
     //let type = req.params.type;
     let id = req.query.id;
-    let sql = 'select * from question_desc where id = ?';
+    let sql = 'select d.id, d.desc_path, q.title from question_desc d INNER JOIN question q on d.id = q.id where q.id = ?';
     //let params = [type, no];
 
     connection.query(sql, id, function (err, result) {
