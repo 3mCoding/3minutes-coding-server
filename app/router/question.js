@@ -63,4 +63,18 @@ console.log(id, answers);
         });
     })
 });
+
+router.get('/description', function (req, res) {
+    //let type = req.params.type;
+    let id = req.query.id;
+    let sql = 'select * from question_desc where id = ?';
+    //let params = [type, no];
+
+    connection.query(sql, id, function (err, result) {
+        if (err) return res.sendStatus(400);
+
+        res.json(result);
+        console.log("result : " + JSON.stringify(result));
+    });
+});
 module.exports = router;
