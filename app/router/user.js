@@ -60,7 +60,7 @@ router.post('/login', function (req, res) {
     let step = null;
     let name;
     let date;
-    let rank;
+    let rank = 10;
     if (err)
       console.log(err);
     else {
@@ -93,8 +93,8 @@ router.post('/login', function (req, res) {
       'message': message,
       'step' : step,
       'name' : name,
-      'date':date,
-      'rank' : rank
+      'rank' : rank,
+      'date':date
     });
   })
 });
