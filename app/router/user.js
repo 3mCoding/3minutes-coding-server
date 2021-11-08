@@ -93,7 +93,8 @@ router.post('/login', function (req, res) {
       'message': message,
       'step' : step,
       'name' : name,
-      'date':date
+      'date':date,
+      'rank' : rank
     });
   })
 });
