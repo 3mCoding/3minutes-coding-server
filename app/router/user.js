@@ -126,8 +126,8 @@ router.get('/list', function (req, res) {
 });
 
 router.post('/pass', function (req, res) {
-  const email = req.body.email;
-  const step = req.body.step + 1;
+  const email = req.query.email;
+  const step = req.query.step + 1;
   console.log(step);
   var sql = 'UPDATE user SET step = ? WHERE email = ?';
   let params = [step, email];

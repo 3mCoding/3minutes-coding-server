@@ -39,4 +39,4 @@ create table question_answer(
 create table question_desc(
     id INT PRIMARY KEY,
     desc_path VARCHAR(255) NOT NULL
-)
+);
