@@ -92,15 +92,15 @@ router.post('/login', function (req, res) {
         console.log('랭킹 : ' ,rank, rank_);
       }
     }
-    res.json({
-      'code': resultCode,
-      'message': message,
-      'step' : step,
-      'name' : name,
-      'rank' : rank,
-      'date':date
-    });
   })
+  res.json({
+    'code': resultCode,
+    'message': message,
+    'step' : step,
+    'name' : name,
+    'rank' : rank,
+    'date':date
+  });
 });
 
 router.get('/list', function (req, res) {
