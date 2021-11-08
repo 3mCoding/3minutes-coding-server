@@ -86,6 +86,7 @@ router.post('/login', function (req, res) {
             console.log(ret[i].email === email);
             if(ret[i].email === email) {
               rank = ret[i].ranking;
+              console.log(rank);
               break;
             }
           }
