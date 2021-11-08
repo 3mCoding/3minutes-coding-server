@@ -54,16 +54,14 @@ router.post('/login', function (req, res) {
   const pw = req.body.password;
   const sql = 'select * from user where email = ?';
 
-  let resultCode = 404;
-  let message = '에러가 발생했습니다';
-  let step;
-  let stuName;
-  let date;
-  let rank_;
-  let rank;
-
   connection.query(sql, email, function (err, result) {
-
+    let resultCode = 404;
+    let message = '에러가 발생했습니다';
+    let step;
+    let stuName;
+    let date;
+    let rank_;
+    let rank;
     if (err)
       console.log(err);
     else {
@@ -83,26 +81,29 @@ router.post('/login', function (req, res) {
               break;
             }
           }
+          console.log(result[0].date);
+          resultCode = 200;
+          message = '로그인 되었습니다.';
+          step = result[0].step;
+          stuName = result[0].student_num + " " + result[0].name;
+          date = result[0].date;
+          rank = rank_;
+
+          res.json({
+            'code': resultCode,
+            'message': message,
+            'step' : step,
+            'name' : stuName,
+            'rank' : rank,
+            'date':date
+          });
+
         })
-        console.log(result[0].date);
-        resultCode = 200;
-        message = '로그인 되었습니다.';
-        step = result[0].step;
-        stuName = result[0].student_num + " " + result[0].name;
-        date = result[0].date;
-        rank = rank_;
         console.log('랭킹 : ' ,rank, rank_);
       }
     }
   })
-  return res.json({
-    'code': resultCode,
-    'message': message,
-    'step' : step,
-    'name' : stuName,
-    'rank' : rank,
-    'date':date
-  });
+
 });
 
 router.get('/list', function (req, res) {
