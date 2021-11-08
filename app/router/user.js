@@ -60,6 +60,7 @@ router.post('/login', function (req, res) {
     let step = null;
     let name;
     let date;
+    let rank_;
     let rank;
     if (err)
       console.log(err);
@@ -81,17 +82,15 @@ router.post('/login', function (req, res) {
         connection.query(rankSql, function (err, ret) {
           console.log(ret);
           for(let i = 0; ; i++){
-            console.log(ret[i].email);
-            console.log(ret[i].ranking);
-            console.log(ret[i].email === email);
             if(ret[i].email === email) {
-              rank = ret[i].ranking;
-              console.log(rank);
+              rank_ = ret[i].ranking;
               break;
             }
           }
         })
       }
+      rank = rank_;
+      console.log(rank);
     }
     res.json({
       'code': resultCode,
