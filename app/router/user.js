@@ -81,6 +81,8 @@ router.post('/login', function (req, res) {
         connection.query(rankSql, function (err, ret) {
           console.log(ret);
           for(let i = 0; ; i++){
+            console.log(ret[i].email);
+            console.log(ret[i].ranking);
             if(ret[i].email === email) {
               rank = ret[i].ranking;
               break;
