@@ -2,7 +2,12 @@ const express = require('express');
 const router = express();
 const connection = require('../mysql');
 
-router.get('/', function(req, res){
+router.use(express.urlencoded({
+    extended: false
+  })); //application/x-www-form-urlencoded
+  router.use(express.json());
+
+router.get('/', function (req, res) {
     res.send('question');
 })
 // /question/type/java?no=1
@@ -15,7 +20,7 @@ router.get('/type/:type', function (req, res) {
     console.log(type, no);
     connection.query(sql, params, function (err, result) {
         if (err) return res.sendStatus(400);
-  
+
         res.json(result);
         console.log("result : " + JSON.stringify(result));
     });
@@ -29,4 +34,33 @@ router.get('/list', function (req, res) {
     });
 });
 
+router.post('/answer', function (req, res) {
+    const id = req.body.id;
+    const answers = req.body.answers;
+    const sql = 'select answers from question_answer where id = ?';
+console.log(id, answers);
+    connection.query(sql, id, function (err, result) {
+        let resultCode = 404;
+        let message = '에러가 발생했습니다';
+        let pass = 0;
+        if (err)
+            console.log(err);
+        else {
+            if (result[0].answers === answers) {
+                resultCode = 200;
+                message = '정답입니다.';
+                pass = 1;
+            } else {
+                resultCode = 204;
+                message = '틀렸습니다. 다시 한 번 시도해 주세요.';
+                pass = 0;
+            }
+        }
+        res.json({
+            'code': resultCode,
+            'message': message,
+            'pass': pass
+        });
+    })
+});
 module.exports = router;
