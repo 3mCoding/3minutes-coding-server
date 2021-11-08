@@ -77,11 +77,12 @@ router.post('/login', function (req, res) {
         step = result[0].step;
         name = result[0].student_num + " " + result[0].name;
         date = result[0].date;
-        let rankSql = 'SELECT email, rank() over(order by step desc) AS rank FROM user'
+        let rankSql = 'SELECT email, rank() over(order by step desc) AS ranking FROM user'
         connection.query(rankSql, function (err, ret) {
+          console.log(ret);
           for(let i = 0; ; i++){
             if(ret[i].email === email) {
-              rank = ret[i].rank;
+              rank = ret[i].ranking;
               break;
             }
           }
