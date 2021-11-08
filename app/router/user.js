@@ -58,6 +58,9 @@ router.post('/login', function (req, res) {
     let resultCode = 404;
     let message = '에러가 발생했습니다';
     let step = null;
+    let name;
+    let date;
+    let rank;
     if (err)
       console.log(err);
     else {
@@ -68,15 +71,29 @@ router.post('/login', function (req, res) {
         resultCode = 204;
         message = '비밀번호가 일치하지 않습니다.';
       } else {
+        console.log(result[0].date);
         resultCode = 200;
         message = '로그인 되었습니다.';
         step = result[0].step;
+        name = result[0].student_num + " " + result[0].name;
+        date = result[0].date;
+        let rankSql = 'SELECT email, rank() over(order by step desc) AS rank FROM user'
+        connection.query(rankSql, function (err, ret) {
+          for(let i = 0; ; i++){
+            if(ret[i].email === email) {
+              rank = ret[i].rank;
+              break;
+            }
+          }
+        })
       }
     }
     res.json({
       'code': resultCode,
       'message': message,
-      'step' : step
+      'step' : step,
+      'name' : name,
+      'date':date
     });
   })
 });
