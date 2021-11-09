@@ -88,7 +88,7 @@ router.post('/login', function (req, res) {
           stuName = result[0].student_num + " " + result[0].name;
           date = result[0].date;
           rank = rank_;
-
+          console.log('랭킹 : ', rank, rank_);
           res.json({
             'code': resultCode,
             'message': message,
@@ -99,7 +99,7 @@ router.post('/login', function (req, res) {
           });
 
         })
-        console.log('랭킹 : ', rank, rank_);
+        
       }
     }
   })
@@ -127,7 +127,7 @@ router.get('/list', function (req, res) {
 
 router.post('/pass', function (req, res) {
   const email = req.query.email;
-  const step = req.query.step + 1;
+  const step = req.query.step;
   console.log(step);
   var sql = 'UPDATE user SET step = ? WHERE email = ?';
   let params = [step, email];
