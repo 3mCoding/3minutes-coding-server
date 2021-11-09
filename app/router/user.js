@@ -132,7 +132,10 @@ router.post('/pass', function (req, res) {
   var sql = 'UPDATE user SET step = ? WHERE email = ?';
   let params = [step, email];
   connection.query(sql, params, function (err, result) {
-    res.end();
+    console.log("step : ", step);
+    res.json({
+      'step' : step
+    })
   })
 });
 module.exports = router;
