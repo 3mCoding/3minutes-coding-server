@@ -62,6 +62,7 @@ router.post('/login', function (req, res) {
     let date;
     let rank_;
     let rank;
+    let student_num;
     if (err)
       console.log(err);
     else {
@@ -85,7 +86,8 @@ router.post('/login', function (req, res) {
           resultCode = 200;
           message = '로그인 되었습니다.';
           step = result[0].step;
-          stuName = result[0].student_num + " " + result[0].name;
+          student_num = result[0].student_num;
+          stuName = result[0].name;
           date = result[0].date;
           rank = rank_;
           console.log('랭킹 : ', rank, rank_);
@@ -94,6 +96,7 @@ router.post('/login', function (req, res) {
             'message': message,
             'step': step,
             'name': stuName,
+            'student_num' : student_num,
             'rank': rank,
             'date': date
           });
