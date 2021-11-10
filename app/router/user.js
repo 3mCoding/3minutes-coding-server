@@ -147,9 +147,7 @@ router.post('/update', function (req, res) {
   var sql = 'select step from user where email = ?';
   let params = [step, email];
   connection.query(sql, email, function (err, result) {
-    res.json({
-      'step' : step
-    })
+    res.json(result);
   })
 });
 module.exports = router;
