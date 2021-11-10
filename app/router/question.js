@@ -77,4 +77,14 @@ router.get('/description', function (req, res) {
         console.log("result : " + JSON.stringify(result));
     });
 });
+router.post('/description', function (req, res) {
+    let content = req.query.content;
+    let stuNum = req.query.student_num;
+
+    connection.query(`INSERT INTO question_rec(content, student_num) VALUES ('${content}', '${stuNum}')`, function (err, result) {
+        res.json({
+            'message' : '제출 되었습니다.'
+        })
+    });
+});
 module.exports = router;

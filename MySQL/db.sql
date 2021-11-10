@@ -40,3 +40,9 @@ create table question_desc(
     id INT PRIMARY KEY,
     desc_path VARCHAR(255) NOT NULL
 );
+
+create table question_rec(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    content VARCHAR(500) NOT NULL,
+    student_num INT NOT NULL
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
