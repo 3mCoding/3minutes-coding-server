@@ -143,7 +143,9 @@ router.post('/update', function (req, res) {
   const email = req.query.email;
   const name = req.query.name;
   console.log(email, name);
-
+  console.log(typeof(email));
+  console.log(email === null);
+  
   var sql = 'select step from user where email = ?';
   let params = [step, email];
   connection.query(sql, email, function (err, result) {
