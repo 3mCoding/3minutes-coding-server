@@ -77,7 +77,8 @@ router.get('/description', function (req, res) {
         console.log("result : " + JSON.stringify(result));
     });
 });
-router.post('/description', function (req, res) {
+
+router.post('/recommend', function (req, res) {
     let content = req.query.content;
     let stuNum = req.query.student_num;
 
