@@ -141,15 +141,26 @@ router.post('/pass', function (req, res) {
 
 router.post('/update', function (req, res) {
   const email = req.query.email;
+  const stuNum = req.query.student_num;
   const name = req.query.name;
-  console.log(email, name);
-  console.log(typeof(email));
-  console.log(email === null);
-  
-  var sql = 'select step from user where email = ?';
-  let params = [step, email];
-  connection.query(sql, email, function (err, result) {
-    res.json(result);
+
+  var sql = 'UPDATE user SET stuNum = ?, name = ? WHERE email = ?';
+  let params = [stuNum, name, email];
+
+  if(stuNum === -1) {
+    sql = 'UPDATE user SET name = ? WHERE email = ?';
+    params = [name, email];
+  }else if(name === 'x'){
+    var sql = 'UPDATE user SET stuNum = ? WHERE email = ?';
+    params = [stuNum, email];
+  }
+
+  console.log(sql);
+  console.log(params);
+  connection.query(sql, params, function (err, result) {
+    res.json({
+      'message' : '정보가 변경되었습니다.'
+    })
   })
 });
 module.exports = router;
