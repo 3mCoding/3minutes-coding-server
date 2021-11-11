@@ -3,11 +3,13 @@ VALUES
 (01, 1, 5, "java", "사칙연산", 
 "변수와 출력 내용을 보고 알맞은 사칙연산을 맞춰주세요.", 
 "8\n4\n3\n0\n12",
-"int a = 6;\nint b = 2;\n\nSystem.out.println(a ①_ b);\n
+"int a = 6;\nint b = 2;\n\n
+System.out.println(a ①_ b);\n
 System.out.println(a ②_ b);\n
 System.out.println(a ③_ b);\n
 System.out.println(a ④_ b);\n
-System.out.println(a ⑤_ b);\n"),
+System.out.println(a ⑤_ b);\n
+"),
 
 (02, 2, 2, 
 "java", 
@@ -146,14 +148,13 @@ VALUES
 (11, 1, 5, "c", "사칙연산", 
 "변수와 출력 내용을 보고 알맞은 사칙연산을 맞춰주세요.", 
 "8\n4\n3\n0\n12",
-"int a = 6;\n
-int b = 2;\n\n
-printf(\"%d\n\", a ①_ b);\n
-printf(\"%d\n\", a ①_ b);\n
-printf(\"%d\n\", a ②_ b);\n
-printf(\"%d\n\", a ③_ b);\n
-printf(\"%d\n\", a ④_ b);\n
-printf(\"%d\n\", a ⑤_ b);\n"),
+"int a = 6;\nint b = 2;\n\n
+printf(\"%d\", a ①_ b);\n
+printf(\"%d\", a ①_ b);\n
+printf(\"%d\", a ②_ b);\n
+printf(\"%d\", a ③_ b);\n
+printf(\"%d\", a ④_ b);\n
+printf(\"%d\", a ⑤_ b);\n"),
 
 (12, 2, 2, 
 "c", 
@@ -275,11 +276,8 @@ for (int i = 0; i < row; i++) {\n
 INSERT INTO question 
 VALUES
 (21, 1, 5, "C++", "사칙연산", "변수와 출력 내용을 보고 알맞은 사칙연산을 맞춰주세요.", 
-"
-8\n4\n3\n0\n12
-", 
-"
-int a = 6;\n
+"8\n4\n3\n0\n12", 
+"int a = 6;\n
 int b = 2;\n\n
 cout << a ①_ b << endl;\n
 cout << a ②_ b << endl;\n
@@ -293,8 +291,7 @@ cout << a ⑤_ b << endl;\n
 "
 두 수를 입력하세요 >> 7 2\n7 > 2\n두 수를 입력하세요 >> 3 3\n3 = 3
 ", 
-"
-int a, b;\n
+"int a, b;\n
 char str = '';\n\n
 cout << \"두 수를 입력하세요 >> \";\n
 cin >> a;\n
