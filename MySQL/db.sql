@@ -1,6 +1,6 @@
-create database tmc_db;
+create database tmc;
 
-use tmc_db
+use tmc
 
 create table user(
     email VARCHAR(50) PRIMARY KEY,
