@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express();
 const bcrypt = require("bcryptjs");
-const connection = require('../mysql');
+const connection = require('../mysql2');
 const moment = require('moment');
 
 router.use(express.urlencoded({

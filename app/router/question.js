@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express();
-const connection = require('../mysql');
+const connection = require('../mysql2');
 
 router.use(express.urlencoded({
     extended: false
